@@ -66,10 +66,12 @@ h3 {
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
+	size: 90%;
 }
 .games a:hover {
 	background-color: #ddd;
 	color: black;
+	size: 90%;
 }
 
 /* about section */
