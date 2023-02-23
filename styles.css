@@ -56,8 +56,8 @@ h3 {
     overflow: hidden;
     text-align: center;
     display: table;
-    margin-left: 70px;
-	margin-right: 70px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .games a {
 	text-align: center;
