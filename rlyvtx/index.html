@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Rolly Vortex Unblocked</title>
+    <link rel="shortcut icon" href="favicon.ico">
+       <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #070c23;
+        }
+		#container{
+			top:50%;
+			left:50%;
+			position:absolute;
+			transform: translate(-50%, -50%);
+			/* background:#222c36; */
+			background:#000416;
+			height:840px;
+		}
+		#logo{
+			position: absolute;
+			display:block;
+			top: 50%;
+			left: 50%;
+			width:80%;
+			max-height:80%;
+			-webkit-transform: translate(-50%,-50%);
+			transform: translate(-50%,-50%);
+			text-align: center;
+			overflow:hidden;
+		}
+		#footer{
+			width:100%;
+			height:40px;
+			bottom:0;
+			left:50%;
+			position:absolute;
+			transform: translate(-50%, 0%);
+			background: linear-gradient(to bottom, #ccc 0%, #fff 100%);
+		}
+		div.button{
+			background: #222c36;
+			padding: 0 8px;
+			text-align: center;
+			border-radius: 3px;
+			color: white;
+			font-weight: bold;
+			text-decoration: none;
+			cursor:pointer;
+		}
+		div.moregames {
+			height: 38px;
+			line-height: 38px;
+			padding: 0 5px;
+			margin: 1px 1px 0 0;
+			float: left;
+			color: #333;
+			text-align: left;
+			font-size: 15px;
+			position: relative;
+			z-index: 10;
+		}
+		div.fullscreen{
+			margin: 1px 1px 0 0;
+			position:absolute;
+			right:5px;
+			height:38px;
+			line-height:38px;
+			display:inline-flex;
+			font-weight:bold;
+		}
+		div.fullscreen img{
+			padding-left:5px;
+		}
+    </style>
+
+		<script src="unity/unity-mod.js"></script>
+    <script type="text/javascript">
+        function UnityProgress(dom) {
+			//console.log("dom",dom);
+            this.progress = 0.0;
+            this.message = "";
+            this.dom = dom;
+            var parent = dom.parentNode;
+            this.SetProgress = function (progress) {
+                if (this.progress < progress)
+                    this.progress = progress;
+                if (progress == 1) {
+                    //document.getElementById("logo").style.display = "none";
+                }else if (progress > 0) {
+                    document.getElementById("logo").style.display = "block";
+                     document.getElementById("sitelogo").style.display = "none";
+                }
+                this.Update();
+            }
+            this.SetMessage = function (message) {
+				//console.log("message:",message);
+                if (!message || message.length == 0 && this.progress > 0) {
+                    this.SetProgress(1);
+                    return;
+                }
+                this.message = message;
+                this.Update();
+            }
+            this.Clear = function () {
+               document.getElementById("logo").style.display = "none";
+                document.getElementById("sitelogo").style.display = "block";
+            }
+            this.Update = function () {
+                if (this.progress < 1) {
+                    document.getElementById("loadinginfo").innerHTML = "LOADING " + Math.round(this.progress * 100) + "%";
+                }else {
+                    document.getElementById("loadinginfo").innerHTML = "Game Loaded, Processing...";
+                }
+            }
+            this.Update();
+        }
+
+	    function FitScreen(w,h){
+		   var w=800;
+		   var h=550;
+		   var availWidth=window.innerWidth;
+		   var availHeight=window.innerHeight-40;
+		   var canvas = document.getElementById("canvas");
+		   if(availWidth/availHeight>w/h){
+			   canvas.height = availHeight;
+			   canvas.width = canvas.height*w/h;
+			}else{
+			   canvas.width = availWidth;
+			   canvas.height = canvas.width*h/w;
+			}
+		   document.getElementById("container").style.width=canvas.width + "px";
+		   document.getElementById("container").style.height=(canvas.height + 40) + "px";
+
+		   if(canvas.width/canvas.height>4/3){
+
+		       document.getElementById("logo").style.height=Math.round(canvas.height*0.6) + "px";
+		   	   document.getElementById("logo").style.width=Math.round(canvas.height*0.6*4/3) + "px";
+		   }else{
+
+		   	   document.getElementById("logo").style.width=Math.round(canvas.width*0.8) + "px";
+		   	   document.getElementById("logo").style.height=Math.round(canvas.width*0.8*3/4) + "px";
+		   }
+		}
+    </script>
+
+
+	<script type="text/javascript">
+	function openWindow(Screen,Button,NameId,website)
+    {
+       document.onmouseup = function()
+        {
+		    switch(website.trim().toLowerCase()){
+				case "bestgames":
+					GameId = GetGameIdByNameId(NameId,gamesBest);
+					linkBest("Rolly Vortex",Screen,Button,GameId);
+					break;
+				case "cargames":
+					GameId = GetGameIdByNameId(NameId,gamesCar);
+					linkCar("Rolly Vortex",Screen,Button,GameId);
+					break;
+				default:
+					console.log(website+" is error");
+			}
+			document.onmouseup = null;
+        }
+	}
+	//随机一个nameId
+	function GetNameIdByRandom(len,website){
+		var gamesArr;
+		switch(website.trim().toLowerCase()){
+			case "bestgames":
+				 gamesArr = gamesBest;
+				break;
+			case "cargames":
+				 gamesArr = gamesCar;
+				break;
+			default:
+				console.log(website+" is error");
+			}
+		var nameIdArray = new Array();
+		var separator = ',';
+		for(var i = 0;i<len;i++){
+			var randomIndex;
+			var nameId;
+			do{
+				 randomIndex = Math.floor(Math.random()*(gamesArr.length));
+				 nameId = gamesArr[randomIndex]['nameid'];
+			}while(nameIdArray.includes(nameId)&&len<=gamesArr.length);
+			nameIdArray[i] = nameId;
+		}
+		nameIdArray[len] = website;
+		var nameIds = nameIdArray.join(separator);
+		console.log(nameIds);
+	    this.SendMessage("WWWLoader","CallGetNameIds",nameIds);
+	}
+	//通过NameId获取GameId
+	function GetGameIdByNameId(NameId,Games){
+		for (i=0;i<Games.length;i++){
+			if(Games[i]['nameid'] == NameId){
+				return Games[i]['id'];
+			}
+		}
+		console.log("ShowGames.js not exist ",NameId," correspond to vaule");
+		return "";
+	}
+	//直接根据网址打开网页
+	function openWindowByUrl(Url)
+    {
+	 var url = encodeURI(Url);
+       document.onmouseup = function()
+        {
+            window.open(url);
+			document.onmouseup = null;
+        }
+	}
+	  </script>
+</head>
+
+<body onFocus="FitScreen();" onLoad="FitScreen();" onResize="FitScreen();">
+	<div id="container">
+    	<canvas id="canvas" oncontextmenu="event.preventDefault()" width="800" height="550"></canvas>
+
+        <div id="footer" style="display: none;">
+             <div id="sitelogo">
+            </div>
+        </div>
+
+        <div id="logo">
+            <img src="img.jpg" width="100%" height="100%">
+            <img src="bestgames-logo.png" style="bottom:-2px;position:absolute;left:50%;width:80%;transform: translate(-50%, 0%); cursor:pointer;" onClick='linkBest("Rolly Vortex","loading","logo")'>
+            <div id="loadinginfo" style="position:absolute;bottom:10px;left:50%;width:50%;max-height:10px;transform: translate(-50%, 0%);color:#a59d96;font-size:14px;">
+            	Loading...
+            </div>
+        </div>
+    </div>
+   <script type='text/javascript'>
+  var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,
+    compatibilitycheck: null,
+    backgroundColor: "#222C36",
+    splashStyle: "Light",
+    dataUrl: "Release/Rolly-Vortex-10-17-1-GD.data",
+    codeUrl: "Release/Rolly-Vortex-10-17-1-GD.js",
+    asmUrl: "Release/Rolly-Vortex-10-17-1-GD.asm.js",
+    memUrl: "Release/Rolly-Vortex-10-17-1-GD.mem",
+  };
+</script>
+<script src="Release/UnityLoader.js"></script>
+
+</body>
+</html>
